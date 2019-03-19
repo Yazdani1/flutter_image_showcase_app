@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "766341606205",
+    "firebase_url": "https://flutter-image-showcase-app.firebaseio.com",
+    "project_id": "flutter-image-showcase-app",
+    "storage_bucket": "flutter-image-showcase-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766341606205:android:92dd3d64720f4142",
+        "android_client_info": {
+          "package_name": "com.ydc.flutterimageshowcaseapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766341606205-djkind62orrifuru4mteof1r0cdchjv2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcbm3v2m-Cu0frqjh4cIzx46KyQg-YUOc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
