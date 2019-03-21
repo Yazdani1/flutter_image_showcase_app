@@ -95,12 +95,31 @@ class _HomeState extends State<Home> {
 
           ],
         ),
-      ),//drawer end here..
+      ),
+      //drawer end here..
+
+//      body: new ListView.builder(
+//          itemCount: walpapers.length,
+//          itemBuilder: (context,index){
+//            return new Card(
+//              margin: EdgeInsets.all(10.0),
+//
+//              elevation: 10.0,
+//              child: new Container(
+//                padding: EdgeInsets.all(10.0),
+//                child: new Text(walpapers[index].data["title"],
+//                  style: TextStyle(fontSize: 24.0,color: Colors.orange,),
+//                ),
+//              ),
+//
+//            );
+//          }),
+
       
       body: walpapers !=null?
       new StaggeredGridView.countBuilder(
         padding: const EdgeInsets.all(8.0),
-          crossAxisCount: 6,
+          crossAxisCount: 4,
           itemCount: walpapers.length,
         itemBuilder: (conext,i){
 
@@ -123,7 +142,7 @@ class _HomeState extends State<Home> {
           );
 
         },
-        staggeredTileBuilder: (i)=>new StaggeredTile.count(2, i.isEven?2:2),
+        staggeredTileBuilder: (i)=>new StaggeredTile.count(2, i.isEven?2:3),
         mainAxisSpacing: 8.0,
         crossAxisSpacing: 8.0,
       ):new Center(
