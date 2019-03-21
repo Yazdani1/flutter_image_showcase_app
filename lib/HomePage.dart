@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -6,6 +10,30 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  StreamSubscription<QuerySnapshot>subscription;
+  List<DocumentSnapshot>walpapers;
+
+ final CollectionReference collectionReference=Firestore.instance.collection("images");
+
+  @override
+  void initState() {
+
+    super.initState();
+    subscription = collectionReference.snapshots().listen((datasnapshot){
+      setState(() {
+        walpapers=datasnapshot.documents;
+      });
+    });
+  }
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -68,9 +96,40 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),//drawer end here..
+      
+      body: walpapers !=null?
+      new StaggeredGridView.countBuilder(
+        padding: const EdgeInsets.all(8.0),
+          crossAxisCount: 6,
+          itemCount: walpapers.length,
+        itemBuilder: (conext,i){
 
+          String imagPath=walpapers[i].data["url"];
 
+          return new Material(
+            elevation: 8.0,
+            borderRadius: new BorderRadius.all(new Radius.circular(8.0)),
+            child: new InkWell(
+              child: new Hero(
+                  tag: imagPath,
+                  child: new FadeInImage(
+                      placeholder: new AssetImage("assets/c.jpg"),
+                      image: new NetworkImage(imagPath),
+                      fit: BoxFit.cover,
+                  )
+              ),
+            ),
 
+          );
+
+        },
+        staggeredTileBuilder: (i)=>new StaggeredTile.count(2, i.isEven?2:2),
+        mainAxisSpacing: 8.0,
+        crossAxisSpacing: 8.0,
+      ):new Center(
+        child: new CircularProgressIndicator(),
+      )
+      
     );
   }
 }
